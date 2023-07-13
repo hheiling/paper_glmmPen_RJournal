@@ -101,4 +101,12 @@ The code to run the supplemental simulations includes the following files:
 
 Code to extract the relevant results from each set of simulations is given in corresponding "extract_results" R files:
 
-* ...
+* "extract_results_pajor.R" - Takes log-likelihood estimates from the "Pajor_loglik_vs_lme4.R" simulations and creates the "Pajor_loglik_vs_lme4.RData" object
+* "extract_results_model_select_comp.R" - Takes coefficient estimate and timing results from the "model_select_comparison.R" simulations and creates the "model_select_comparison.RData" object
+* "extract_results_select_10Cov_var_restrict.R" - Takes coefficient estimate and timing results from the "select_10Cov_var_restrict.R" simulations and creates the "select_10Cov_var_restrict.RData" object
+
+Code to replicate supplemental simulation results (read in relevant RData objects and create summary plots or statistics):
+
+* "replication_pajor.R" - Reads in "Pajor_loglik_vs_lme4.RData" object (which includes relevant simulation output from the "Pajor_loglike_vs_lme4.R" simulations) and creates plots comparing the lme4 log-likelihood estimates (x-axis) vs the Pajor log-likelihood estimates calculated from the glmmPen R package (y-axis).
+* "replication_model_select_comp.R" - Reads in "model_select_comparison.RData" object (which includes relevant simulation output from the "model_select_comparison.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure. For each simulation setting, three possible model selection criteria were used: BIC-ICQ (default package option), BICh (hybrid BIC), and the regular BIC
+* "replication_select_10Cov_var_restrict.R" - Reads in "select_10Cov_var_restrict.RData" object (which includes relevant simulation output from the "select_10Cov_var_restrict.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure. 
