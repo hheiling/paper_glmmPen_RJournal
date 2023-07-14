@@ -3,7 +3,7 @@
 
 # Path to location of summary output object created in "extract_results_select_10Cov_var_restrict.R"
 ## Object: "select_10Cov_var_restrict.RData"
-path = "~/GitHub/cloud/RJournal_GitHub"
+# path = "~/GitHub/cloud/RJournal_GitHub"
 
 # Read in summary output object: select_10Cov_var_restrict.RData"
 ## loads 'res' list object

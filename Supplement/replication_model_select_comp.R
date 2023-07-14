@@ -3,7 +3,7 @@
 
 # Path to location of summary output object created in "extract_results_model_select_comp.R"
 ## Object: "model_select_comparison.RData"
-path = "~/GitHub/cloud/RJournal_GitHub"
+# path = "~/GitHub/cloud/RJournal_GitHub"
 
 # Read in summary output object: "model_select_comparison.RData"
 ## loads 'res' list object

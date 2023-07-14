@@ -3,7 +3,7 @@
 
 # Path to location of summary output object created in "extract_results_select_10Cov_B2_alt.R"
 ## Object: "select_10Cov_B2_alt.RData"
-path = "~/GitHub/cloud/RJournal_GitHub"
+# path = "~/GitHub/cloud/RJournal_GitHub"
 
 # Read in summary output object: select_10Cov_B2_alt.RData"
 ## loads 'res' list object

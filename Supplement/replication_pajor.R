@@ -2,7 +2,7 @@
 
 # Path to location of summary output object created in "extract_results_pajor.R"
 ## Object: "Pajor_loglike_vs_lme4.RData"
-path = "~/GitHub/cloud/RJournal_GitHub"
+# path = "~/GitHub/cloud/RJournal_GitHub"
 
 # Read in summary output object: "Pajor_loglik_vs_lme4.RData"
 ## loads 'res' list object
