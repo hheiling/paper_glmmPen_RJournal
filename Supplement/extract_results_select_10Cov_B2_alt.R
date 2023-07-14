@@ -4,17 +4,17 @@
 library(stringr)
 
 # Specify path to simulation results
-path = "~/Longleaf/RJournal_GitHub/select_10Cov_var_restrict"
+path = "~/Longleaf/RJournal_GitHub/select_10Cov_B2_alt"
 # Specify path to save summary RData output object
 path_save = "~/GitHub/cloud/RJournal_GitHub"
 
 # Names of sub-folder directories
-sims = str_c("sim",1:8)
+sims = str_c("sim",1:4)
 # Labels of sub-folder directories
 ## beta = true slope, K = number of groups within data, SD = standard deviation of random effects
-sim_labels = str_c("Beta_",rep(c(1,2),each=4),
-                   "_K_",rep(rep(c(5,10),each=2),times=2),
-                   "_SD_",rep(c(1,round(sqrt(2),2)),times=4))
+sim_labels = str_c("Beta_2",
+                   "_K_",rep(c(5,10),each=2),
+                   "_SD_",rep(c(1,round(sqrt(2),2)),times=2))
 
 # Read in simulation results and create an RData object with relevant output
 res = list()
@@ -47,6 +47,6 @@ for(s in 1:length(sims)){
                               time_vec = time_vec, prescreen_mat = prescreen_mat)
 }
 
-save(res, file = sprintf("%s/select_10Cov_var_restrict.RData",path_save))
+save(res, file = sprintf("%s/select_10Cov_B2_alt.RData",path_save))
 
 #############################################################################################################
