@@ -99,14 +99,49 @@ The code to run the supplemental simulations includes the following files:
 * "select_10Cov_B2_alt.R" - This code re-runs the paper p=10 simulations using a larger value of the fixed effects coefficients (beta = 2 instead of beta = 1)
 * "select_50Cov_B2_alt.R" - This code re-runs the paper p=50 simulations using a larger value of the fixed effects coefficients (beta = 2 instead of beta = 1)
 
+Variable definitions to manually edit:
+
+* "prefix0" - location of directory to store simulation results
+* "prefix0_post" - for variable selection simulations, location of directory to store posterior draws from the minimum penalty model, which are used to calculate the BIC-ICQ values for each model fit.
+
+Linux code to submit the simulation jobs to a computing cluster:
+```
+sbatch --array=1-800 -N 1 -t 5:00:00 --mem=1g -n 1 --output=pajor_%a.out --wrap="R CMD BATCH Pajor_loglik_vs_lme4.R pajor_$SLURM_ARRAY_TASK_ID.Rout"
+
+sbatch --array=1-1200 -N 1 -t 5:00:00 --mem=2g -n 1 --output=ms_comp_%a.out --wrap="R CMD BATCH model_select_comparison.R ms_comp_$SLURM_ARRAY_TASK_ID.Rout"
+
+sbatch --array=1-800 -N 1 -t 5:00:00 --mem=2g -n 1 --output=var_resp10_%a.out --wrap="R CMD BATCH select_10Cov_var_restrict.R var_resp10_$SLURM_ARRAY_TASK_ID.Rout"
+
+sbatch --array=1-800 -N 1 -t 72:00:00 --mem=2g -n 1 --output=var_resp50_%a.out --wrap="R CMD BATCH select_50Cov_var_restrict.R var_resp50_$SLURM_ARRAY_TASK_ID.Rout"
+
+sbatch --array=1-400 -N 1 -t 5:00:00 --mem=2g -n 1 --output=selectp10B2_%a.out --wrap="R CMD BATCH paper_select_10Cov_B2_alt.R selectp10B2_$SLURM_ARRAY_TASK_ID.Rout"
+
+sbatch --array=1-400 -N 1 -t 72:00:00 --mem=2g -n 1 --output=selectp50B2_%a.out --wrap="R CMD BATCH paper_select_50Cov_B2_alt.R selectp50B2_$SLURM_ARRAY_TASK_ID.Rout"
+```
+
 Code to extract the relevant results from each set of simulations is given in corresponding "extract_results" R files:
 
 * "extract_results_pajor.R" - Takes log-likelihood estimates from the "Pajor_loglik_vs_lme4.R" simulations and creates the "Pajor_loglik_vs_lme4.RData" object
 * "extract_results_model_select_comp.R" - Takes coefficient estimate and timing results from the "model_select_comparison.R" simulations and creates the "model_select_comparison.RData" object
 * "extract_results_select_10Cov_var_restrict.R" - Takes coefficient estimate and timing results from the "select_10Cov_var_restrict.R" simulations and creates the "select_10Cov_var_restrict.RData" object
 
+In "extract_results" code, user must manually update the "path" and "path_save" variables as needed, which describe the directory path location of the simulation output and the directory path location where the RData summary object should be saved, respectively.
+
 Code to replicate supplemental simulation results (read in relevant RData objects and create summary plots or statistics):
 
 * "replication_pajor.R" - Reads in "Pajor_loglik_vs_lme4.RData" object (which includes relevant simulation output from the "Pajor_loglike_vs_lme4.R" simulations) and creates plots comparing the lme4 log-likelihood estimates (x-axis) vs the Pajor log-likelihood estimates calculated from the glmmPen R package (y-axis).
 * "replication_model_select_comp.R" - Reads in "model_select_comparison.RData" object (which includes relevant simulation output from the "model_select_comparison.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure. For each simulation setting, three possible model selection criteria were used: BIC-ICQ (default package option), BICh (hybrid BIC), and the regular BIC
-* "replication_select_10Cov_var_restrict.R" - Reads in "select_10Cov_var_restrict.RData" object (which includes relevant simulation output from the "select_10Cov_var_restrict.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure. 
+* "replication_select_10Cov_B2_alt.R" - Reads in "select_10Cov_B2_alt.RData" object (which includes relevant simulation outout from the "select_10Cov_B2_alt.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure.
+* "replication_select_10Cov_var_restrict.R" - Reads in "select_10Cov_var_restrict.RData" object (which includes relevant simulation output from the "select_10Cov_var_restrict.R" simulations) and creates a table of summary statistics: average fixed effects coefficients for the true predictors, true and false positive percentages for the fixed and random effects, and median time in hours to complete variable selection procedure.
+
+In order to examine the summary plots or statistics for each simulation, run the following R code:
+```
+# Set working directory to Supplement/ folder contents, edit line below as needed
+setwd("~/Supplement/")
+# Call the "replication" code scripts as desired
+source("replication_pajor.R")
+source("replication_model_select_comp.R")
+source("replication_select_10Cov_B2_alt.R")
+source("replication_select_10Cov_var_restrict.R")
+```
+
