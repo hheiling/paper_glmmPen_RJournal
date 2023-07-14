@@ -136,12 +136,12 @@ Code to replicate supplemental simulation results (read in relevant RData object
 
 In order to examine the summary plots or statistics for each simulation, run the following R code:
 ```
-# Set working directory to Supplement/ folder contents, edit line below as needed
-setwd("~/Supplement/")
+# Define directory location of Supplement/ folder, manually edit as needed
+path = "~/Supplement"
 # Call the "replication" code scripts as desired
-source("replication_pajor.R")
-source("replication_model_select_comp.R")
-source("replication_select_10Cov_B2_alt.R")
-source("replication_select_10Cov_var_restrict.R")
+source(sprintf("%s/replication_pajor.R", path))
+source(sprintf("%s/replication_model_select_comp.R", path))
+source(sprintf("%s/replication_select_10Cov_B2_alt.R", path))
+source(sprintf("%s/replication_10Cov_var_restrict.R", path))
 ```
 
