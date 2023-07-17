@@ -89,11 +89,11 @@ plot_diag = plot_mcmc(object = fitB, plots = c("sample.path","autocorr"),
                       grps = "all", vars = TSP)
 # Figure 1a sample path plot
 plot_diag$sample_path + theme(axis.text.x = element_text(angle = 270))
-ggsave(filename = "Figures/Figure1A Sample Path.pdf",
+ggsave(filename = "Figure1A Sample Path.pdf",
        width = 7, height = 5, units = "in")
 # Figure 1b autocorrelation plot
 plot_diag$autocorr
-ggsave(filename = "Figures/Figure1B Autocorrelation.pdf",
+ggsave(filename = "Figure1B Autocorrelation.pdf",
        width = 7, height = 5, units = "in")
 
 ## prediction using fixed effects only
