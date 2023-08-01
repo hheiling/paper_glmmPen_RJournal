@@ -7,7 +7,7 @@
 
 # Read in summary output object: select_10Cov_B2_alt.RData"
 ## loads 'res' list object
-load(file = sprintf("%s/select_50Cov_B2_alt.RData",path))
+load(file = sprintf("%s/select_10Cov_B2_alt.RData",path))
 
 # Compare variable selection results across the model selection criteria options 
 # within each simulation condition
