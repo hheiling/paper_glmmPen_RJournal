@@ -142,6 +142,6 @@ path = "~/Supplement"
 source(sprintf("%s/replication_pajor.R", path))
 source(sprintf("%s/replication_model_select_comp.R", path))
 source(sprintf("%s/replication_select_10Cov_B2_alt.R", path))
-source(sprintf("%s/replication_10Cov_var_restrict.R", path))
+source(sprintf("%s/replication_select_10Cov_var_restrict.R", path))
 ```
 
