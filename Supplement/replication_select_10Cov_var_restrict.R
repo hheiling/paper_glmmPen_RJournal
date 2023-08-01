@@ -27,15 +27,15 @@ for(i in 1:length(res)){
   #   and median time in hours to complete selection across simulation replicates
   b1 = round(mean(beta_mat[which(beta_mat[,2] != 0),2]),2)
   b2 = round(mean(beta_mat[which(beta_mat[,3] != 0),3]),2)
-  tp_f = round(sum(beta_mat[,c(2,3)] != 0) / (2*length(files)) * 100, 1)
-  fp_f = round(sum(beta_mat[,-c(1:3)] != 0) / ((ncol(beta_mat)-3)*length(files)) * 100, 1)
-  tp_r = round(sum(vars_mat[,c(2,3)] != 0) / (2*length(files)) * 100, 1)
-  fp_r = round(sum(vars_mat[,-c(1:3)] != 0) / ((ncol(vars_mat)-3)*length(files)) * 100, 1)
+  tp_f = round(sum(beta_mat[,c(2,3)] != 0) / (2*nrow(beta_mat)) * 100, 1)
+  fp_f = round(sum(beta_mat[,-c(1:3)] != 0) / ((ncol(beta_mat)-3)*nrow(beta_mat)) * 100, 1)
+  tp_r = round(sum(vars_mat[,c(2,3)] != 0) / (2*nrow(vars_mat)) * 100, 1)
+  fp_r = round(sum(vars_mat[,-c(1:3)] != 0) / ((ncol(vars_mat)-3)*nrow(vars_mat)) * 100, 1)
   
   out_mat[i,] = c(b1, b2, tp_f, fp_f, tp_r, fp_r, round(median(time_vec),2))
   
 }
 
-out_mat
+print(out_mat)
 
 ##############################################################################################################
