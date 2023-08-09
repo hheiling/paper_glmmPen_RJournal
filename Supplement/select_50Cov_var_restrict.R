@@ -13,7 +13,7 @@ header_nas = "~/"
 # Path to additional scratch space
 header_pine = "/work/users/h/h/hheiling/"
 # Name of subfolders to save results
-sub_folder = "select_50Cov_var_restrict/"
+sub_folder = "select_50Cov_var_restrict_B1/"
 # prefix: folder to save results
 ## prefix0: location to save main output files
 prefix0 = str_c(header_nas, "RJournal_GitHub/",sub_folder)
@@ -25,7 +25,7 @@ if(!dir.exists(prefix0_post)){dir.create(prefix0_post, recursive = TRUE)}
 # 100 simulation replicates needed
 sim_total = 100
 
-beta_val = c(1,2)
+beta_val = c(1)
 sd_val = c(1,sqrt(2))
 K_val = c(5,10)
 combos = expand.grid(sd_val, K_val, beta_val)
@@ -88,7 +88,7 @@ set.seed(seeds[batch])
 fit_glmmPen = glmmPen(formula = y ~ X + (X | group), family = "binomial",
                       covar = "independent", optim_options = optimControl(var_restrictions = "fixef"),
                       tuning_options = selectControl(BIC_option = "BICq", pre_screen = TRUE,
-                                                     search = "abbrev", lambda.min.presc = 0.01),
+                                                     search = "abbrev", lambda.min.presc = 0.05),
                       BICq_posterior = sprintf("%s/BICq_post_Batch_%s", prefix_BICq, batch_label))
 end1 = proc.time()
 
